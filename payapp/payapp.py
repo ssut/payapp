@@ -131,8 +131,8 @@ class PayApp(object):
 
         return Struct(**restructed)
 
-    def pay_request(self, name, price, contact, callback, returns, paytype='card,rbank',
-                    memo='', var1='', var2=''):
+    def pay_request(self, name, price, contact, callback, returns, use_sms=True,
+                    paytype='card,rbank', memo='', var1='', var2=''):
         """결제를 요청합니다.
 
         :param name: 상품명
@@ -140,6 +140,7 @@ class PayApp(object):
         :param contact: (recvphone) 수신 휴대폰번호
         :param callback: (feedbackurl) 결제 완료 피드백 URL
         :param returns: (returnurl) 결제 완료 후 이동할 URL
+        :param use_sms: (smsuse) SMS 결제 사용여부
         :param paytype: (openpaytype) 결제수단
         :param memo: 메모
         :param var1: 임의 사용 변수 1
@@ -156,6 +157,8 @@ class PayApp(object):
             'returnurl': returns,
             'openpaytype': paytype,
         }
+        if not use_sms:
+            data['smsuse'] = 'n'
         result = self._post('payrequest', data=data)
         data = {
             'success': result.success,
