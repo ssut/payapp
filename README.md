@@ -67,12 +67,12 @@ def callback():
     parsed.pay_state # => payapp 문서 참고
     
     # 신용카드 거래일 때 유효한 속성
-    pay.pay_check_url # => 카드전표 URL
-    pay.pay_card_name # => 결제 카드사 이름
+    parsed.pay_check_url # => 카드전표 URL
+    parsed.pay_card_name # => 결제 카드사 이름
     
     # 가상계좌 거래일 때 유효한 속성
-    pay.pay_vbank # => 가상계좌 은행 이름
-    pay.pay_vbank_account # => 가상계좌 계좌번호
+    parsed.pay_vbank # => 가상계좌 은행 이름
+    parsed.pay_vbank_account # => 가상계좌 계좌번호
 
     return 'SUCCESS'
     
