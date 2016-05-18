@@ -29,7 +29,7 @@ class PayApp(object):
         self.link_key = link_key
         self.link_value = link_value
 
-    def __post(self, cmd, data={}):
+    def _post(self, cmd, data={}):
         assert cmd in CMD_LIST
         assert self.user_id
 
@@ -37,7 +37,6 @@ class PayApp(object):
             'cmd': cmd,
             'userid': self.user_id,
         })
-        print(data)
         resp = requests.post(REST_URL, data=data)
         success = False
         error = None
@@ -157,7 +156,7 @@ class PayApp(object):
             'returnurl': returns,
             'openpaytype': paytype,
         }
-        result = self.__post('payrequest', data=data)
+        result = self._post('payrequest', data=data)
         data = {
             'success': result.success,
             'error': result.error,
@@ -183,7 +182,7 @@ class PayApp(object):
             data['cancelmemo'] = memo
         if ready:
             data['cancelmode'] = True
-        result = self.__post('paycancel', data=data)
+        result = self._post('paycancel', data=data)
         data = {
             'success': result.success,
             'error': result.error,
@@ -202,7 +201,7 @@ class PayApp(object):
             'mul_no': identifier,
             'cancelmemo': memo,
         }
-        result = self.__post('paycancelreq', data=data)
+        result = self._post('paycancelreq', data=data)
         data = {
             'success': result.success,
             'error': result.error,
