@@ -37,7 +37,7 @@ pay = PayApp(PayApp.TEST_ID, PayApp.TEST_KEY, PayApp.TEST_VALUE)
 @app.route('/')
 def index():
     callback_url = url_for('.callback', _external=True)
-    result = pay.pay_result(
+    result = pay.pay_request(
         name=u'bery tasti fud',
         price='1000',
         contact='01000000000',
