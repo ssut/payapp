@@ -11,6 +11,9 @@ class Struct(object):
     def __repr__(self):
         return str(self.__dict__)
 
+    def __contains__(self, item):
+        return item in self.__dict__
+
 
 class PayAppInternalResult(namedtuple('PayAppInternalResult',
                            ['success', 'error', 'content'])):
@@ -18,8 +21,8 @@ class PayAppInternalResult(namedtuple('PayAppInternalResult',
 
 
 class PayType(object):
-    TYPES = (u'신용카드', u'휴대전화', u'해외결제', u'대면결제',
-             u'계좌이체', u'가상계좌', u'문화상품권')
+    TYPES = (u'신용카드', u'휴대전화', u'해외결제', u'대면결제', None,
+             u'계좌이체', u'가상계좌', None, u'문화상품권')
 
     def __init__(self, type_id):
         if type(type_id) is not int:
