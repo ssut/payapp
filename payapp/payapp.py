@@ -95,7 +95,7 @@ class PayApp(object):
 
         paystate = PayState(params.pay_state)
         paytype = None
-        if paystate.code not in ('cancel'):
+        if paystate.code not in ('cancel') and len(params.pay_type) > 0:
             paytype = PayType(params.pay_type)
 
         restructed = {
@@ -123,7 +123,7 @@ class PayApp(object):
                 'pay_card_name': params.card_name,
             })
         # 가상계좌 거래일 경우
-        elif paytype is not None and int(paytype) == 6:
+        elif 'vbank' in params and len(params.vbank) > 0:
             restructed.update({
                 'pay_vbank': params.vbank,
                 'pay_vbank_account': params.vbankno,
