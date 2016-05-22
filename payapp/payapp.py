@@ -127,6 +127,7 @@ class PayApp(object):
             restructed.update({
                 'pay_vbank': params.vbank,
                 'pay_vbank_account': params.vbankno,
+                'pay_type': PayType(7),
             })
 
         return Struct(**restructed)
