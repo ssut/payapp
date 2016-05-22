@@ -33,7 +33,11 @@ class PayType(object):
         return self.type_id
 
     def __str__(self):
-        return PayType.TYPES[self.type_id]
+        type_ = PayType.TYPES[self.type_id]
+        if type_ is None:
+            return ''
+        else:
+            return type_
 
     def __repr__(self):
         return str(self.type_id)
