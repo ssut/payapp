@@ -21,7 +21,7 @@ class PayAppInternalResult(namedtuple('PayAppInternalResult',
 
 
 class PayType(object):
-    TYPES = (u'신용카드', u'휴대전화', u'해외결제', u'대면결제', None,
+    TYPES = (None, u'신용카드', u'휴대전화', u'해외결제', u'대면결제', None,
              u'계좌이체', u'가상계좌', None, u'문화상품권')
 
     def __init__(self, type_id):
@@ -33,7 +33,7 @@ class PayType(object):
         return self.type_id
 
     def __str__(self):
-        return PayType.TYPES[self.type_id - 1]
+        return PayType.TYPES[self.type_id]
 
     def __repr__(self):
         return str(self.type_id)

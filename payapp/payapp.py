@@ -100,7 +100,7 @@ class PayApp(object):
 
         restructed = {
             'name': params.goodname,
-            'price': params.price,
+            'price': int(params.price),
             'contact': params.recvphone,
             'memo': params.memo,
             'request_date': reqdate,

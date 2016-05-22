@@ -5,7 +5,10 @@ import payapp
 
 base_dir = path.dirname(__file__)
 requirements_path = path.join(base_dir, 'requirements.txt')
-install_requires = map(str.strip, open(requirements_path).readlines())
+if path.exists(requirements_path):
+    install_requires = map(str.strip, open(requirements_path).readlines())
+else:
+    install_requires = ['requests']
 
 version = payapp.__version__
 desc = payapp.__doc__
